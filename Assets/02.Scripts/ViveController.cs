@@ -12,8 +12,10 @@ public class ViveController : MonoBehaviour
 
     //컨트롤러 입력값 정의
     public SteamVR_Action_Boolean trigger;
-    //트랙패드 클릭
+    //트랙패드 관련 입력값 정의
     public SteamVR_Action_Boolean trackPadClick = SteamVR_Actions.default_Teleport;
+    public SteamVR_Action_Boolean trackPadTouch = SteamVR_Actions.default_TrackPadTouch;
+    public SteamVR_Action_Vector2 trackPadPosition = SteamVR_Actions.default_TrackPadPosition;
 
     void Awake()
     {
@@ -39,6 +41,13 @@ public class ViveController : MonoBehaviour
         if (trackPadClick.GetStateDown(any))
         {
             Debug.Log("TrackPad Click");
+        }
+
+        if (trackPadTouch.GetState(any))
+        {
+            Vector2 pos = trackPadPosition.GetAxis(any);
+            Debug.Log($"Touch Pos x={pos.x}/y={pos.y}");  //C# 6.0
+            //Debug.LogFormat("Touch Pos x={0}/y={1}", pos.x, pos.y);
         }
     }
 }
