@@ -11,6 +11,7 @@ public class LaserPointer : MonoBehaviour
 
     //라인렌더러 속성 변수
     private LineRenderer line;
+    [Range(3.0f, 10.0f)]
     public float distance = 5.0f;
     public Color defaultColor = Color.green;
     public Color clickedColor = Color.blue;
@@ -33,6 +34,9 @@ public class LaserPointer : MonoBehaviour
 
         line.material = new Material(Shader.Find("Unlit/Color"));
         line.material.color = defaultColor;
+
+        line.startWidth = 0.05f;
+        line.endWidth   = 0.005f;
     }
 
 }
