@@ -48,11 +48,6 @@ public class ViveController : MonoBehaviour
             Vector2 pos = trackPadPosition.GetAxis(any);
             Debug.Log($"Touch Pos x={pos.x}/y={pos.y}");  //C# 6.0
             //Debug.LogFormat("Touch Pos x={0}/y={1}", pos.x, pos.y)        
-        }
-
-        if (trackPadClick.GetStateDown(any))
-        {
-            Debug.Log("TrackPad Clicked");
-        }
+        }        
     }
 }
