@@ -53,9 +53,19 @@ public class LaserPointer : MonoBehaviour
 
     void Update()
     {
+
+
         if (Physics.Raycast(tr.position, tr.forward, out hit, distance))
         {
             line.SetPosition(1, new Vector3(0, 0, hit.distance));
+            pointer.transform.position = hit.point  + (hit.normal * 0.01f);
+            pointer.transform.rotation = Quaternion.LookRotation(hit.normal); 
         }
+        else
+        {
+            pointer.transform.position = tr.position + (tr.forward * distance);
+            pointer.transform.rotation = Quaternion.LookRotation(tr.forward);
+        }
+
     }
 }
