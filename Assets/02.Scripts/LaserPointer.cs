@@ -55,7 +55,7 @@ public class LaserPointer : MonoBehaviour
     {
         if (Physics.Raycast(tr.position, tr.forward, out hit, distance))
         {
-            
+            line.SetPosition(1, new Vector3(0, 0, hit.distance));
         }
     }
 }
