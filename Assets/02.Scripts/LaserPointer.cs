@@ -16,12 +16,18 @@ public class LaserPointer : MonoBehaviour
     public Color defaultColor = Color.green;
     public Color clickedColor = Color.blue;
 
+    [SerializeField]
+    private GameObject pointerPrefab;
+
     void Start()
     {
         pose = GetComponent<SteamVR_Behaviour_Pose>();
         hand = SteamVR_Input_Sources.LeftHand;
         teleport = SteamVR_Actions.default_Teleport;
         
+        pointerPrefab = Resources.Load<GameObject>("Pointer");
+        //pointerPrefab = Resources.Load("Pointer") as GameObject;
+
         CreateLine();
     }
 
