@@ -20,6 +20,10 @@ public class LaserPointer : MonoBehaviour
     private GameObject pointerPrefab;
     private GameObject pointer;
 
+    //Raycast
+    private RaycastHit hit;
+    private Transform tr;
+
     void Start()
     {
         pose = GetComponent<SteamVR_Behaviour_Pose>();
@@ -28,6 +32,7 @@ public class LaserPointer : MonoBehaviour
         
         pointerPrefab = Resources.Load<GameObject>("Pointer");
         pointer = Instantiate<GameObject>(pointerPrefab, this.transform);
+        tr = GetComponent<Transform>();
 
         CreateLine();
     }
@@ -46,4 +51,11 @@ public class LaserPointer : MonoBehaviour
         line.endWidth   = 0.005f;
     }
 
+    void Update()
+    {
+        if (Physics.Raycast(tr.position, tr.forward, out hit, distance))
+        {
+            
+        }
+    }
 }
