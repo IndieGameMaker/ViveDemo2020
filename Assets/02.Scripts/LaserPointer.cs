@@ -24,6 +24,9 @@ public class LaserPointer : MonoBehaviour
     private RaycastHit hit;
     private Transform tr;
 
+    public float durationTime = 0.2f;
+
+
     void Start()
     {
         pose = GetComponent<SteamVR_Behaviour_Pose>();
@@ -53,8 +56,6 @@ public class LaserPointer : MonoBehaviour
 
     void Update()
     {
-
-
         if (Physics.Raycast(tr.position, tr.forward, out hit, distance))
         {
             line.SetPosition(1, new Vector3(0, 0, hit.distance));
@@ -67,5 +68,19 @@ public class LaserPointer : MonoBehaviour
             pointer.transform.rotation = Quaternion.LookRotation(tr.forward);
         }
 
+        if (teleport.GetStateDown(hand) 
+            && Physics.Raycast(tr.position, tr.forward, out hit, distance, 1<<8))
+        {
+            SteamVR_Fade.Start(Color.black, 0.0f);
+            StartCoroutine(Teleport(hit.point));
+        }
+    }
+
+    IEnumerator Teleport(Vector3 pos)
+    {
+        tr.parent.transform.position = pos;
+        //Waiting
+        yield return new WaitForSeconds(durationTime);
+        SteamVR_Fade.Start(Color.clear, 0.2f);
     }
 }
