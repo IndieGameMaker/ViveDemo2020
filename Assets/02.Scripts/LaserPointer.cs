@@ -18,6 +18,7 @@ public class LaserPointer : MonoBehaviour
 
     [SerializeField]
     private GameObject pointerPrefab;
+    private GameObject pointer;
 
     void Start()
     {
@@ -26,7 +27,7 @@ public class LaserPointer : MonoBehaviour
         teleport = SteamVR_Actions.default_Teleport;
         
         pointerPrefab = Resources.Load<GameObject>("Pointer");
-        //pointerPrefab = Resources.Load("Pointer") as GameObject;
+        pointer = Instantiate<GameObject>(pointerPrefab, this.transform);
 
         CreateLine();
     }
