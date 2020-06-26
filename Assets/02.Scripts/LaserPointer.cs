@@ -27,8 +27,10 @@ public class LaserPointer : MonoBehaviour
     public float durationTime = 0.2f;
 
 
-    void Start()
+    IEnumerator Start()
     {
+        yield return new WaitForSeconds(2.0f);
+
         pose = GetComponent<SteamVR_Behaviour_Pose>();
         hand = SteamVR_Input_Sources.LeftHand;
         teleport = SteamVR_Actions.default_Teleport;
