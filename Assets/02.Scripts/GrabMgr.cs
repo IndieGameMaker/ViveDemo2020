@@ -21,7 +21,11 @@ public class GrabMgr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isTouched && )
+        if (isTouched && trigger.GetStateDown(hand))
+        {
+            grabObject.SetParent(this.transform);
+            grabObject.GetComponent<Rigidbody>().isKinematic = true;
+        }
     }
 
     void OnTriggerEnter(Collider coll)
